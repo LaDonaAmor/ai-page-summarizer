@@ -27,17 +27,18 @@ let currentTab = null;
 init();
 
 async function init() {
-  const { theme } = await chrome.storage.local.get("theme");
-  applyTheme(theme || "light");
-
-  const { mode, highlightEnabled } = await chrome.storage.local.get([
+  const { theme, mode, highlightEnabled } = await chrome.storage.local.get([
+    "theme",
     "mode",
     "highlightEnabled",
   ]);
 
+  applyTheme(theme || "light");
+
   if (mode) modeSel.value = mode;
-  if (typeof highlightEnabled === "boolean")
+  if (typeof highlightEnabled === "boolean") {
     highlightChk.checked = highlightEnabled;
+  }
 
   try {
     const [tab] = await chrome.tabs.query({
@@ -64,9 +65,14 @@ async function init() {
   resetBtn.addEventListener("click", reset);
   copyBtn.addEventListener("click", copySummary);
   themeBtn.addEventListener("click", toggleTheme);
-  modeSel.addEventListener("change", () =>
-    chrome.storage.local.set({ highlightEnabled: highlightChk.checked }),
-  );
+
+  modeSel.addEventListener("change", () => {
+    chrome.storage.local.set({ mode: modeSel.value });
+  });
+
+  highlightChk.addEventListener("change", () => {
+    chrome.storage.local.set({ highlightEnabled: highlightChk.checked });
+  });
 }
 
 function isInjectableUrl(url) {
@@ -217,6 +223,7 @@ function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
 }
+
 async function toggleTheme() {
   const cur =
     document.documentElement.getAttribute("data-theme") === "dark"
