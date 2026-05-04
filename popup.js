@@ -40,7 +40,7 @@ async function init() {
     highlightChk.checked = highlightEnabled;
 
   try {
-    cont[tab] = await chrome.tabs.query({
+    const [tab] = await chrome.tabs.query({
       active: true,
       currentWindow: true,
     });

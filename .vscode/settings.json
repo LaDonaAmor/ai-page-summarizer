@@ -2,7 +2,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "cSpell.words": ["apikey", "contentinfo"],
+  "cSpell.words": ["apikey", "contentinfo", "Supabase", "XVCJ"],
   "deno.enablePaths": ["supabase/functions"],
   "deno.lint": true,
   "deno.unstable": [
