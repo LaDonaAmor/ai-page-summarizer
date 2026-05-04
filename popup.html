@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Page Summarizer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="app-logo">
+            <span class="status-indicator" aria-hidden="true"></span>
+            <h1 class="app-title">AI Summarizer</h1>
+        </div>
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+        </button>
+    </header>
+
+    <section class="config-panel">
+        <label for="summaryMode" class="input-group">
+            <span class="label-text">Summary Length</span>
+            <select id="summaryMode" class="dropdown-select">
+                <option value="standard">Standard (6 bullets)</option>
+                <option value="brief">Brief (3 bullets)</option>
+            </select>
+        </label>
+        <label class="checkbox-group">
+            <input type="checkbox" id="enableHighlight" class="checkbox-input" />
+            <span>Highlight key passages</span>
+        </label>
+    </section>
+
+    <div class="action-bar">
+        <button id="summarizeBtn" class="btn-primary">Summarize Page</button>
+        <button id="resetBtn" class="btn-ghost">Reset</button>
+    </div>
+
+    <div id="statusMessage" class="status-banner" role="status" aria-live="polite"></div>
+
+    <main id="summaryOutput" class="results-container" aria-live="polite" hidden>
+        <div class="results-metadata">
+            <span id="readingTime" class="badge"></span>
+            <span id="wordCount" class="badge"></span>
+            <span id="cacheIndicator" class="badge cached" hidden>cached</span>
+            <button id="copyBtn" class="btn-link">Copy Text</button>
+        </div>
+
+        <h2 class="section-heading">Executive Summary</h2>
+        <ul id="summaryList" class="content-list"></ul>
+
+        <h2 class="section-heading">Key Insights</h2>
+        <ul id="insightsList" class="content-list"></ul>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>
