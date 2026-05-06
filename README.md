@@ -49,7 +49,7 @@ This is a local extension and should not be uploaded to the Chrome Web Store.
 1. Download or clone this repository.
 
 ```bash
-git clone <your-submitted-repository-url>
+git clone https://github.com/LaDonaAmor/ai-page-summarizer
 cd ai-page-summarizer
 ```
 
